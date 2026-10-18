@@ -17,7 +17,7 @@ export const uploadSiteFile = createServerFn({ method: "POST" })
     return d as { password: string; slot: Slot; base64: string };
   })
   .handler(async ({ data }) => {
-    const expected = process.env.UPLOAD_PASSWORD;
+    const expected = process.env["UPLOAD_PASSWORD"];
     if (!expected || data.password !== expected) throw new Error("Wrong password");
     const bin = Uint8Array.from(atob(data.base64), (c) => c.charCodeAt(0));
     if (String.fromCharCode(...bin.slice(0, 4)) !== "%PDF") throw new Error("Only PDF files are allowed");
