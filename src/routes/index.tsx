@@ -234,16 +234,19 @@ function Index() {
                 </li>
               ))}
             </ol>
-            <div className="reveal card h-fit p-7">
+            <div className="reveal card h-fit w-full min-w-0 p-6 sm:p-7 ml-0 lg:ml-0 max-lg:ml-[34px] max-lg:w-[calc(100%-34px)]">
               <p className="eyebrow">Professional development</p>
               <Award className="mt-4 text-primary" size={28} />
-              <h3 className="mt-3 text-xl font-extrabold">Applied AI & ML Essentials</h3>
+              <h3 className="mt-3 text-lg font-extrabold sm:text-xl">Applied AI & ML Essentials</h3>
               <p className="text-muted-foreground">Vishlesan i-Hub, IIT Patna × Masai</p>
               <p className="mt-3 font-mono text-sm font-bold">February 2026 – August 2026</p>
               {cert ? (
-                <a href={CERT_URL} target="_blank" rel="noopener" className="btn btn-primary mt-5">View Certificate <ExternalLink size={16} /></a>
+                <div className="mt-5 flex flex-col items-start gap-3">
+                  <p className="inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Course completed · Here is my Certificate</p>
+                  <a href={CERT_URL} target="_blank" rel="noopener" className="btn btn-primary">View Certificate <ExternalLink size={16} /></a>
+                </div>
               ) : (
-                <p className="mt-5 inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Final exam completed · certificate processing</p>
+                <p className="mt-5 inline-block max-w-full rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Final exam completed · certificate processing</p>
               )}
             </div>
           </div>
