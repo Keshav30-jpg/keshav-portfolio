@@ -28,3 +28,18 @@ export const uploadSiteFile = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+export const resetSiteFile = createServerFn({ method: "POST" })
+  .inputValidator((d: { password: string; slot: string }) => {
+    if (!d || !ALLOWED.includes(d.slot as Slot)) throw new Error("Invalid slot");
+    if (typeof d.password !== "string") throw new Error("Wrong password");
+    return { password: d.password, slot: d.slot as Slot };
+  })
+  .handler(async ({ data }) => {
+    const expected = process.env["UPLOAD_PASSWORD"];
+    if (!expected || data.password !== expected) throw new Error("Wrong password");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.storage.from("site-files").remove([data.slot]);
+    if (error) throw new Error("Reset failed. Please try again.");
+    return { ok: true };
+  });
