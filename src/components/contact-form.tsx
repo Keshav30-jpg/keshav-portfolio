@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Send, Check } from "lucide-react";
+import { Send, Check, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { LINKS } from "@/lib/portfolio-data";
 
@@ -13,14 +13,19 @@ const schema = z.object({
 type Field = keyof z.infer<typeof schema>;
 const empty = { name: "", email: "", subject: "", message: "" };
 
+// EmailJS public browser credentials (safe to ship in client code).
+const EMAILJS = { service: "service_h0anqba", template: "template_b4sxjcs", publicKey: "BatSGAi8Fgy1VZ4Xj" };
+
 export function ContactForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const set = (k: Field, v: string) => setValues((s) => ({ ...s, [k]: v }));
 
-  function submit(e: FormEvent) {
+  async function submit(e: FormEvent) {
     e.preventDefault();
     const r = schema.safeParse(values);
     if (!r.success) {
@@ -30,11 +35,33 @@ export function ContactForm() {
       return;
     }
     setErrors({});
+    setFailed(false);
+    setSending(true);
     const d = r.data;
     const subject = d.subject || "Internship opportunity";
-    const body = `${d.message}\n\n— ${d.name} (${d.email})`;
-    window.location.href = `mailto:${LINKS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    try {
+      const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service_id: EMAILJS.service,
+          template_id: EMAILJS.template,
+          user_id: EMAILJS.publicKey,
+          template_params: {
+            name: d.name, from_name: d.name,
+            email: d.email, from_email: d.email, reply_to: d.email,
+            subject, title: subject,
+            message: d.message,
+          },
+        }),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      setSent(true);
+    } catch {
+      setFailed(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   const input = "mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/30";
@@ -49,8 +76,8 @@ export function ContactForm() {
       {sent ? (
         <div className="mt-8 rounded-xl border border-primary/30 bg-accent p-8 text-center text-accent-foreground">
           <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground"><Check size={28} /></span>
-          <p className="mt-5 text-xl font-bold">Message Drafted & Email Client Opened!</p>
-          <p className="mt-2">Thank you! Your mail client has been opened with your message. You can also reach me directly at <a href={`mailto:${LINKS.email}`} className="font-bold underline-offset-2 hover:underline">{LINKS.email}</a>.</p>
+          <p className="mt-5 text-xl font-bold">Message Sent!</p>
+          <p className="mt-2">Thank you! I'll get back to you soon. You can also reach me directly at <a href={`mailto:${LINKS.email}`} className="font-bold underline-offset-2 hover:underline">{LINKS.email}</a>.</p>
           <button type="button" onClick={() => { setValues(empty); setSent(false); }} className="btn btn-outline mt-6 !py-2">Send another message</button>
         </div>
       ) : (
@@ -75,7 +102,8 @@ export function ContactForm() {
             <textarea id="cf-message" rows={4} className={input} placeholder="Describe your role, company, or questions about my machine learning & Power BI projects..." maxLength={2000} value={values.message} onChange={(e) => set("message", e.target.value)} />
             {err("message")}
           </div>
-          <button type="submit" className="btn btn-primary w-full justify-center"><Send size={18} /> Send Internship Inquiry</button>
+          {failed && <p className="text-sm text-destructive">Sorry, the message couldn't be sent. Please try again or email me at <a href={`mailto:${LINKS.email}`} className="font-bold underline">{LINKS.email}</a>.</p>}
+          <button type="submit" disabled={sending} className="btn btn-primary w-full justify-center disabled:opacity-70">{sending ? <><Loader2 size={18} className="animate-spin" /> Sending...</> : <><Send size={18} /> Send Internship Inquiry</>}</button>
         </form>
       )}
     </div>
