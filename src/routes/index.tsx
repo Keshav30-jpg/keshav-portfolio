@@ -10,6 +10,7 @@ import { getFileStatus } from "@/lib/files.functions";
 import { PdfViewer } from "@/components/pdf-viewer";
 import { DocumentDownload } from "@/components/document-download";
 import { AttendanceCertificate } from "@/components/attendance-certificate";
+import { ContactForm } from "@/components/contact-form";
 
 const TITLE = "Keshav S — Data Analyst & Aspiring AI/ML Engineer";
 const DESC = "Portfolio of Keshav S, BCA graduate from Chennai building ML models, Power BI dashboards and RAG apps. Open to Data Analyst and AI/ML internships.";
@@ -290,7 +291,7 @@ function Index() {
               ) : <div key={l} className="reveal card p-6">{inner}</div>;
             })}
           </div>
-          <a href={`mailto:${LINKS.email}?subject=Internship%20opportunity`} className="btn btn-primary mt-10">Email me about an internship <ArrowRight size={18} /></a>
+          <ContactForm />
         </Section>
       </main>
 
