@@ -36,7 +36,9 @@ export function PdfViewer({ url }: { url: string }) {
           canvas.setAttribute("aria-label", `Document page ${n}`);
           canvas.setAttribute("role", "img");
           host.appendChild(canvas);
-          await page.render({ canvas, viewport }).promise;
+          const canvasContext = canvas.getContext("2d");
+          if (!canvasContext) throw new Error("Document rendering unavailable");
+          await page.render({ canvasContext, viewport }).promise;
         }
         if (!stopped) setState("");
       } catch {
