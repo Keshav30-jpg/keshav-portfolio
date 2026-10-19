@@ -157,7 +157,7 @@ function Index() {
         <Section id="about" eyebrow="About me" title="Turning raw data into useful decisions." muted>
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
             <p className="reveal text-lg leading-relaxed text-muted-foreground">
-              I am a BCA graduate interested in Data Analytics, Machine Learning, and Generative AI. Through hands-on projects, I have worked with customer churn prediction, business intelligence dashboards, and Retrieval-Augmented Generation applications. I enjoy transforming raw data into meaningful insights, developing practical machine learning solutions, and building applications that make AI more useful and accessible. I am looking for an internship where I can contribute to real projects, strengthen my technical skills, and learn from experienced professionals.
+              I'm a BCA graduate from Chennai interested in Data Analytics, Machine Learning, and Generative AI. Through hands-on projects, I have worked with customer churn prediction, business intelligence dashboards, and Retrieval-Augmented Generation applications. I enjoy transforming raw data into meaningful insights, developing practical machine learning solutions, and building applications that make AI more useful and accessible. I am looking for an internship where I can contribute to real projects, strengthen my technical skills, and learn from experienced professionals.
             </p>
             <ul className="space-y-3">
               {["Data-driven problem solving", "Practical machine learning & analytics projects", "Interest in AI-powered applications & continuous learning"].map((h) => (
