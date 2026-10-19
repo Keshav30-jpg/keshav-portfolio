@@ -251,7 +251,7 @@ function Index() {
               <p className="mt-3 font-mono text-sm font-bold">February 2026 – August 2026</p>
               <AttendanceCertificate />
               {certChecked && !cert && (
-                <p className="mt-5 inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Exam completed · Certificate processing</p>
+                <p className="mt-5 inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Final exam completed · certificate processing</p>
               )}
               {cert && (
                 <div className="mt-5 flex flex-col items-start gap-3">
