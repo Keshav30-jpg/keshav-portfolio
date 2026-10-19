@@ -250,6 +250,9 @@ function Index() {
               <p className="text-muted-foreground">Vishlesan i-Hub, IIT Patna × Masai</p>
               <p className="mt-3 font-mono text-sm font-bold">February 2026 – August 2026</p>
               <AttendanceCertificate />
+              {certChecked && !cert && (
+                <p className="mt-5 inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Completed final exam · Certificate currently under processing</p>
+              )}
               {cert && (
                 <div className="mt-5 flex flex-col items-start gap-3">
                   <p className="inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Course completed · Here is my Certificate</p>
