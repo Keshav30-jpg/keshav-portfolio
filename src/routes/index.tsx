@@ -7,6 +7,8 @@ import {
 import heroImg from "@/assets/hero-data.jpg";
 import { LINKS, SKILLS, PROJECTS, EXPERTISE, NAV, RESUME_URL, RESUME_DOWNLOAD_URL, CERT_URL } from "@/lib/portfolio-data";
 import { getFileStatus } from "@/lib/files.functions";
+import { PdfViewer } from "@/components/pdf-viewer";
+import { DocumentDownload } from "@/components/document-download";
 
 const TITLE = "Keshav S — Data Analyst & Aspiring AI/ML Engineer";
 const DESC = "Portfolio of Keshav S, BCA graduate from Chennai building ML models, Power BI dashboards and RAG apps. Open to Data Analyst and AI/ML internships.";
@@ -69,7 +71,7 @@ function Nav() {
         <ul className="hidden items-center gap-7 lg:flex">
           {NAV.map(([l, id]) => <li key={id}><a href={`#${id}`} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">{l}</a></li>)}
         </ul>
-        <a href={RESUME_URL} target="_blank" rel="noopener" className="btn btn-primary hidden !py-2.5 lg:inline-flex">View Resume <ArrowRight size={16} /></a>
+        <a href="/documents/resume.pdf" target="_blank" rel="noopener" className="btn btn-primary hidden !py-2.5 lg:inline-flex">View Resume <ArrowRight size={16} /></a>
         <button className="lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </button>
@@ -77,7 +79,7 @@ function Nav() {
       {open && (
         <ul className="border-t border-border px-5 py-4 lg:hidden">
           {NAV.map(([l, id]) => <li key={id}><a onClick={() => setOpen(false)} href={`#${id}`} className="block py-3 font-medium">{l}</a></li>)}
-          <li><a href={RESUME_DOWNLOAD_URL} className="btn btn-primary mt-2 w-full">Download Resume <Download size={16} /></a></li>
+          <li><DocumentDownload href={RESUME_DOWNLOAD_URL} className="btn btn-primary mt-2 w-full">Download Resume <Download size={16} /></DocumentDownload></li>
         </ul>
       )}
     </header>
@@ -99,7 +101,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#projects" className="btn btn-primary">Explore My Projects <ArrowDownRight size={18} /></a>
             <a href="#resume" className="btn btn-outline">View Resume <FileText size={18} /></a>
-            <a href={RESUME_DOWNLOAD_URL} className="btn btn-outline">Download Resume <Download size={18} /></a>
+            <DocumentDownload href={RESUME_DOWNLOAD_URL} className="btn btn-outline">Download Resume <Download size={18} /></DocumentDownload>
           </div>
           <div className="mt-6 flex gap-3">
             <Social href={LINKS.github} label="GitHub"><Github size={18} /></Social>
@@ -243,7 +245,7 @@ function Index() {
               {cert ? (
                 <div className="mt-5 flex flex-col items-start gap-3">
                   <p className="inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Course completed · Here is my Certificate</p>
-                  <a href={CERT_URL} target="_blank" rel="noopener" className="btn btn-primary">View Certificate <ExternalLink size={16} /></a>
+                  <a href="/documents/certificate.pdf" target="_blank" rel="noopener" className="btn btn-primary">View Certificate <ExternalLink size={16} /></a>
                 </div>
               ) : (
                 <p className="mt-5 inline-block max-w-full rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Final exam completed · certificate processing</p>
@@ -257,16 +259,11 @@ function Index() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4">
               <p className="flex items-center gap-2 font-semibold"><FileText size={18} className="text-primary" /> Keshav_S_Resume.pdf</p>
               <div className="flex flex-wrap gap-2">
-                <a href={RESUME_URL} target="_blank" rel="noopener" className="btn btn-outline !py-2">Open in new tab <ExternalLink size={16} /></a>
-                <a href={RESUME_DOWNLOAD_URL} className="btn btn-primary !py-2">Download Resume <Download size={16} /></a>
+                <a href="/documents/resume.pdf" target="_blank" rel="noopener" className="btn btn-outline !py-2">Open in new tab <ExternalLink size={16} /></a>
+                <DocumentDownload href={RESUME_DOWNLOAD_URL} className="btn btn-primary !py-2">Download Resume <Download size={16} /></DocumentDownload>
               </div>
             </div>
-            <object data={RESUME_URL} type="application/pdf" className="h-[75vh] min-h-[420px] w-full landscape:max-md:h-[85vh]" aria-label="Resume of Keshav S">
-              <div className="p-10 text-center">
-                <p className="text-muted-foreground">Your browser can't display the PDF here.</p>
-                <a href={RESUME_URL} target="_blank" rel="noopener" className="btn btn-primary mt-4">Open the resume</a>
-              </div>
-            </object>
+            <PdfViewer url={RESUME_URL} />
           </div>
         </Section>
 
