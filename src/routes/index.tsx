@@ -90,7 +90,7 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_1fr] landscape:max-md:grid-cols-[1.2fr_1fr]">
         <div className="reveal">
           <p className="eyebrow flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-primary" /> Open to internship opportunities</p>
-          <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Data, made <span className="text-primary">meaningful.</span></h1>
+          <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Hello<span className="text-primary">.</span></h1>
           <p className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">I'm Keshav S.</p>
           <p className="mt-5 text-xl font-semibold">Data Analyst · Aspiring AI/ML Engineer</p>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
