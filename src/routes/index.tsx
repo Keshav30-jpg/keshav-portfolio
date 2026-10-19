@@ -90,7 +90,7 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_1fr] landscape:max-md:grid-cols-[1.2fr_1fr]">
         <div className="reveal">
           <p className="eyebrow flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-primary" /> Open to internship opportunities</p>
-          <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Data, made <span className="text-primary">meaningful.</span></h1>
+          <h1 className="mt-6 text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Hello<span className="text-primary">.</span></h1>
           <p className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">I'm Keshav S.</p>
           <p className="mt-5 text-xl font-semibold">Data Analyst · Aspiring AI/ML Engineer</p>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
@@ -161,7 +161,7 @@ function Index() {
         <Section id="skills" eyebrow="Technical skills" title="The toolkit behind my projects.">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {SKILLS.map((g, i) => {
-              const Icon = skillIcons[i];
+              const Icon = skillIcons[i]!;
               return (
                 <div key={g.group} className="reveal card lift p-6">
                   <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg bg-accent text-accent-foreground"><Icon size={20} /></span><h3 className="font-bold">{g.group}</h3></div>
@@ -204,7 +204,7 @@ function Index() {
         <Section id="expertise" eyebrow="Areas of expertise" title="Where my project experience lies.">
           <div className="grid gap-5 md:grid-cols-3">
             {EXPERTISE.map((e, i) => {
-              const Icon = [BarChart3, Brain, Sparkles][i];
+              const Icon = [BarChart3, Brain, Sparkles][i]!;
               return (
                 <div key={e.title} className="reveal card lift p-7">
                   <Icon className="text-primary" size={28} />
