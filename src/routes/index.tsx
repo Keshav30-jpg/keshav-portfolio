@@ -278,20 +278,30 @@ function Index() {
         </Section>
 
         <Section id="contact" eyebrow="Contact" title="Let's Connect" sub="I'm actively looking for Data Analyst and AI/ML Engineer internship opportunities. If you are recruiting for a relevant role or would like to discuss one of my projects, feel free to reach out." muted>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: Mail, l: "Email", v: LINKS.email, h: `mailto:${LINKS.email}` },
-              { icon: MapPin, l: "Location", v: "Chennai, Tamil Nadu, India" },
-              { icon: Linkedin, l: "LinkedIn", v: "keshav-s", h: LINKS.linkedin },
-              { icon: Github, l: "GitHub", v: "Keshav30-jpg", h: LINKS.github },
-            ].map(({ icon: Icon, l, v, h }) => {
-              const inner = (<><Icon className="text-primary" /><p className="mt-4 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">{l}</p><p className="mt-1 break-all font-semibold">{v}</p></>);
-              return h ? (
-                <a key={l} href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="reveal card lift block p-6">{inner}</a>
-              ) : <div key={l} className="reveal card p-6">{inner}</div>;
-            })}
+          <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {[
+                { icon: Mail, l: "Email", v: LINKS.email, h: `mailto:${LINKS.email}` },
+                { icon: MapPin, l: "Location", v: "Chennai, Tamil Nadu, India" },
+                { icon: Linkedin, l: "LinkedIn", v: "keshav-s", h: LINKS.linkedin },
+                { icon: Github, l: "GitHub", v: "Keshav30-jpg", h: LINKS.github },
+              ].map(({ icon: Icon, l, v, h }) => {
+                const inner = (
+                  <>
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent text-accent-foreground"><Icon size={20} /></span>
+                    <span className="min-w-0">
+                      <p className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">{l}</p>
+                      <p className="mt-1 break-all font-semibold">{v}</p>
+                    </span>
+                  </>
+                );
+                return h ? (
+                  <a key={l} href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="reveal card lift flex items-center gap-4 p-5">{inner}</a>
+                ) : <div key={l} className="reveal card flex items-center gap-4 p-5">{inner}</div>;
+              })}
+            </div>
+            <ContactForm />
           </div>
-          <ContactForm />
         </Section>
       </main>
 

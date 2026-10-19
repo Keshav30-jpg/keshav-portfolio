@@ -42,7 +42,7 @@ export function ContactForm() {
   const err = (k: Field) => errors[k] && <p className="mt-1.5 text-sm text-destructive">{errors[k]}</p>;
 
   return (
-    <div className="reveal card mt-12 max-w-2xl p-6 sm:p-10">
+    <div className="reveal card w-full p-6 sm:p-10">
       <h3 className="text-2xl font-extrabold tracking-tight">Send a Direct Message</h3>
       <p className="mt-2 text-muted-foreground">Fill in your contact details and message to initiate an internship conversation.</p>
 
