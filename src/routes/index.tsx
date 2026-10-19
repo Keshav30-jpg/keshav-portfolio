@@ -97,7 +97,7 @@ function Hero() {
           <p className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">I'm Keshav S.</p>
           <p className="mt-5 text-xl font-semibold">Looking for Data Analyst | <span className="whitespace-nowrap">AI/ML Engineer</span> Internship role</p>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            BCA graduate with hands-on experience building machine learning models, interactive Power BI dashboards, and Retrieval-Augmented Generation (RAG) applications. Skilled in Python, SQL, data analysis, model evaluation, and AI-powered application development. Seeking Data Analyst and AI/ML Engineer internship opportunities to apply technical knowledge to practical problems.
+            BCA graduate building Machine learning models, interactive Power BI dashboards, and RAG applications. Seeking Data Analyst and AI/ML Engineer internships to put practical skills to work.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#projects" className="btn btn-primary">Explore My Projects <ArrowDownRight size={18} /></a>
