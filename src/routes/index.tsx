@@ -140,7 +140,13 @@ const skillIcons = [Code2, BarChart3, Brain, Sparkles, Wrench];
 function Index() {
   useReveal();
   const [cert, setCert] = useState(false);
-  useEffect(() => { getFileStatus().then((s) => setCert(s.certificate)).catch(() => {}); }, []);
+  const [certChecked, setCertChecked] = useState(false);
+  useEffect(() => {
+    getFileStatus()
+      .then((s) => setCert(s.certificate))
+      .catch(() => {})
+      .finally(() => setCertChecked(true));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
