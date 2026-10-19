@@ -9,6 +9,7 @@ import { LINKS, SKILLS, PROJECTS, EXPERTISE, NAV, RESUME_URL, RESUME_DOWNLOAD_UR
 import { getFileStatus } from "@/lib/files.functions";
 import { PdfViewer } from "@/components/pdf-viewer";
 import { DocumentDownload } from "@/components/document-download";
+import { AttendanceCertificate } from "@/components/attendance-certificate";
 
 const TITLE = "Keshav S — Data Analyst & Aspiring AI/ML Engineer";
 const DESC = "Portfolio of Keshav S, BCA graduate from Chennai building ML models, Power BI dashboards and RAG apps. Open to Data Analyst and AI/ML internships.";
@@ -163,7 +164,7 @@ function Index() {
         <Section id="skills" eyebrow="Technical skills" title="The toolkit behind my projects.">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {SKILLS.map((g, i) => {
-              const Icon = skillIcons[i]!;
+               const Icon = skillIcons[i] ?? Code2;
               return (
                 <div key={g.group} className="reveal card lift p-6">
                   <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-lg bg-accent text-accent-foreground"><Icon size={20} /></span><h3 className="font-bold">{g.group}</h3></div>
@@ -206,7 +207,7 @@ function Index() {
         <Section id="expertise" eyebrow="Areas of expertise" title="Where my project experience lies.">
           <div className="grid gap-5 md:grid-cols-3">
             {EXPERTISE.map((e, i) => {
-              const Icon = [BarChart3, Brain, Sparkles][i]!;
+               const Icon = [BarChart3, Brain, Sparkles][i] ?? BarChart3;
               return (
                 <div key={e.title} className="reveal card lift p-7">
                   <Icon className="text-primary" size={28} />
@@ -242,13 +243,12 @@ function Index() {
               <h3 className="mt-3 text-lg font-extrabold sm:text-xl">Applied AI & ML Essentials</h3>
               <p className="text-muted-foreground">Vishlesan i-Hub, IIT Patna × Masai</p>
               <p className="mt-3 font-mono text-sm font-bold">February 2026 – August 2026</p>
-              {cert ? (
+              <AttendanceCertificate />
+              {cert && (
                 <div className="mt-5 flex flex-col items-start gap-3">
                   <p className="inline-block rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Course completed · Here is my Certificate</p>
                   <a href="/documents/certificate.pdf" target="_blank" rel="noopener" className="btn btn-primary">View Certificate <ExternalLink size={16} /></a>
                 </div>
-              ) : (
-                <p className="mt-5 inline-block max-w-full rounded-full bg-accent px-3 py-1.5 text-sm font-semibold text-accent-foreground">Final exam completed · certificate processing</p>
               )}
             </div>
           </div>
