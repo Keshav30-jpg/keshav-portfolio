@@ -13,7 +13,7 @@ export function PdfViewer({ url }: { url: string }) {
     const controller = new AbortController();
     async function render() {
       try {
-        const pdfjs = await import("pdfjs-dist/build/pdf.mjs");
+        const pdfjs = await import("pdfjs-dist");
         pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
         const response = await fetch(url, { cache: "no-store", signal: controller.signal });
         if (!response.ok) throw new Error("Document unavailable");
