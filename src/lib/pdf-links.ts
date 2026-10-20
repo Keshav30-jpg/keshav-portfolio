@@ -5,6 +5,7 @@ export function safePdfLink(url: unknown): string | undefined {
     const parsed = new URL(url);
     if (["https:", "http:", "mailto:"].includes(parsed.protocol)) return parsed.href;
   } catch { /* Missing or invalid PDF destination. */ }
+  return undefined;
 }
 
 export function pdfLinkBounds(rect: number[], width: number, height: number) {

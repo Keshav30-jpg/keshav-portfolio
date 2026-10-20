@@ -40,7 +40,7 @@ export function PdfViewer({ url }: { url: string }) {
           canvas.setAttribute("role", "img");
           const pageHost = document.createElement("div");
           pageHost.className = "relative mx-auto mb-4 w-full max-w-[1000px]";
-          pageHost.dataset.pdfPage = String(n);
+          pageHost.dataset["pdfPage"] = String(n);
           pageHost.appendChild(canvas);
           host.appendChild(pageHost);
           const canvasContext = canvas.getContext("2d");
