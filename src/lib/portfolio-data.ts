@@ -10,7 +10,7 @@ export const RESUME_DOWNLOAD_URL = "/api/public/files/resume.pdf?download=1";
 export const CERT_URL = "/api/public/files/certificate.pdf";
 
 export const SKILLS = [
-  { group: "Programming Languages", items: ["Python", "SQL", "Java — Intermediate"] },
+  { group: "Programming Languages", items: ["Python", "SQL", "Core Java"] },
   { group: "Data Analytics", items: ["Pandas", "NumPy", "Exploratory Data Analysis (EDA)", "Power BI", "DAX", "Excel", "Data Modelling"] },
   { group: "Machine Learning", items: ["Scikit-learn", "Data Preprocessing", "Machine Learning", "Model Evaluation", "Customer Churn Prediction"] },
   { group: "Generative AI & RAG", items: ["Retrieval-Augmented Generation (RAG)", "Large Language Models (LLMs)", "Embeddings", "ChromaDB", "OpenRouter API"] },
