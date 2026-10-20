@@ -3,6 +3,7 @@ export const LINKS = {
   linkedin: "https://www.linkedin.com/in/keshav-s-058264319/",
   email: "keshavharis30@gmail.com",
   photo: "https://i.postimg.cc/nVmXY7Ys/photo-of-keshav.jpg",
+  heroPhoto: "https://i.postimg.cc/pTXCV2ty/photo-of-keshav.jpg",
 };
 
 export const RESUME_URL = "/api/public/files/resume.pdf";

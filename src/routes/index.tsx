@@ -4,7 +4,6 @@ import {
   ArrowRight, ArrowDownRight, FileText, Download, Github, Linkedin, Mail, MapPin, Menu, X,
   ExternalLink, BarChart3, Brain, Sparkles, Code2, Database, Wrench, GraduationCap, Award, ArrowUp, Check,
 } from "lucide-react";
-import heroImg from "@/assets/hero-data.jpg";
 import { LINKS, SKILLS, PROJECTS, EXPERTISE, NAV, RESUME_URL, RESUME_DOWNLOAD_URL, CERT_URL } from "@/lib/portfolio-data";
 import { getFileStatus } from "@/lib/files.functions";
 import { PdfViewer } from "@/components/pdf-viewer";
@@ -112,13 +111,10 @@ function Hero() {
         </div>
         <div className="reveal relative">
           <div className="card overflow-hidden">
-            <img src={heroImg} alt="Abstract 3D data visualisation with bar charts and a trend line" width={1200} height={1008} className="w-full" />
-            <div className="flex items-center gap-4 border-t border-border p-5">
-              <img src={LINKS.photo} alt="Portrait of Keshav S" width={64} height={64} className="h-16 w-16 rounded-full object-cover ring-4 ring-accent" />
-              <div>
-                <p className="eyebrow">A project-first portfolio</p>
-                <p className="mt-1 font-bold">Keshav S · Chennai, India</p>
-              </div>
+            <img src={LINKS.heroPhoto} alt="Portrait of Keshav S" width={800} height={800} className="aspect-square w-full object-cover object-center" />
+            <div className="border-t border-border p-5">
+              <p className="font-mono text-xs font-bold tracking-widest text-primary">BCA Graduate - 2026</p>
+              <p className="mt-1.5 text-lg font-bold">Looking for an internship role.</p>
             </div>
           </div>
         </div>
