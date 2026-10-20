@@ -109,7 +109,7 @@ function Hero() {
             <Social href={LINKS.linkedin} label="LinkedIn"><Linkedin size={18} /></Social>
           </div>
         </div>
-        <div className="reveal relative mx-auto w-full md:max-w-[22rem] lg:max-w-[24rem] xl:max-w-[25rem]">
+        <div className="reveal relative w-full md:ml-auto md:max-w-[22rem] lg:max-w-[24rem] xl:max-w-[25rem]">
           <div className="card overflow-hidden">
             <img src={LINKS.heroPhoto} alt="Portrait of Keshav S" width={800} height={800} className="aspect-square w-full object-cover object-center" />
             <div className="border-t border-border p-5">
