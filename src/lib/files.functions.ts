@@ -22,7 +22,7 @@ export const uploadSiteFile = createServerFn({ method: "POST" })
     if (typeof d.password !== "string") throw new Error("Wrong password");
     if (typeof d.base64 !== "string") throw new Error("Invalid PDF data");
     if (d.base64.length > Math.ceil(MAX_BYTES / 3) * 4) throw new Error("File too large (max 10 MB)");
-    if (!d.base64.length || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(d.base64)) throw new Error("Invalid PDF data");
+    if (!d.base64.length || d.base64.length % 4 !== 0 || !/^[A-Za-z0-9+/]*={0,2}$/.test(d.base64)) throw new Error("Invalid PDF data");
     return d as { password: string; slot: Slot; base64: string };
   })
   .handler(async ({ data }) => {
