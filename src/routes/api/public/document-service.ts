@@ -48,7 +48,7 @@ export const Route = createFileRoute("/api/public/document-service")({
         if (action === "reset") await removeDocument(slot);
         else {
           const file = body.get("file");
-          if (!(file instanceof File)) throw new Error("Only PDF files are allowed");
+          if (!file || typeof file === "string") throw new Error("Only PDF files are allowed");
           if (file.size > MAX_PDF_BYTES) throw new Error("File too large (max 10 MB)");
           await saveDocument(slot, new Uint8Array(await file.arrayBuffer()));
         }

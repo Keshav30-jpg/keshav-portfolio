@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { documentServiceFor, DOCUMENT_SERVICE_ORIGIN } from "@/lib/document-service";
 const storage = vi.hoisted(() => ({ upload: vi.fn(), remove: vi.fn(), from: vi.fn(), list: vi.fn() }));
