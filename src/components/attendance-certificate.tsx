@@ -1,4 +1,5 @@
 import certificateAsset from "@/assets/masai-attendance-certificate.png.asset.json";
+import { DOCUMENT_SERVICE_ORIGIN } from "@/lib/document-service";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -16,7 +17,7 @@ export function AttendanceCertificate() {
             <DialogDescription>Applied AI &amp; ML Essentials · Vishlesan i-Hub, IIT Patna × Masai</DialogDescription>
           </DialogHeader>
           <p className="text-sm text-muted-foreground">Certificate ID: <span className="font-mono font-semibold text-foreground">EBqRcq7cGL</span></p>
-          <img src={certificateAsset.url} alt="Keshav S’s Certificate of Total Engagement in the Artificial Intelligence and Machine Learning program from Vishlesan i-Hub, IIT Patna in collaboration with Masai" width={1087} height={768} className="h-auto w-full" />
+          <img src={`${DOCUMENT_SERVICE_ORIGIN}${certificateAsset.url}`} alt="Keshav S’s Certificate of Total Engagement in the Artificial Intelligence and Machine Learning program from Vishlesan i-Hub, IIT Patna in collaboration with Masai" width={1087} height={768} className="h-auto w-full" />
         </DialogContent>
       </Dialog>
     </div>
