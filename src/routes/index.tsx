@@ -5,7 +5,7 @@ import {
   ExternalLink, BarChart3, Brain, Sparkles, Code2, Database, Wrench, GraduationCap, Award, ArrowUp, Check,
 } from "lucide-react";
 import { LINKS, SKILLS, PROJECTS, EXPERTISE, NAV, RESUME_URL, RESUME_DOWNLOAD_URL, CERT_URL } from "@/lib/portfolio-data";
-import { getFileStatus } from "@/lib/files.functions";
+import { documentServiceFor } from "@/lib/document-service";
 import { PdfViewer } from "@/components/pdf-viewer";
 import { DocumentDownload } from "@/components/document-download";
 import { AttendanceCertificate } from "@/components/attendance-certificate";
@@ -139,7 +139,8 @@ function Index() {
   const [cert, setCert] = useState(false);
   const [certChecked, setCertChecked] = useState(false);
   useEffect(() => {
-    getFileStatus()
+    fetch(`${documentServiceFor(window.location.origin)}/api/public/document-service`, { cache: "no-store" })
+      .then((response) => { if (!response.ok) throw new Error("Status unavailable"); return response.json() as Promise<{ certificate: boolean }>; })
       .then((s) => setCert(s.certificate))
       .catch(() => {})
       .finally(() => setCertChecked(true));

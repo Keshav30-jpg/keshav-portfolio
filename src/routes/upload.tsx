@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { uploadSiteFile, resetSiteFile } from "@/lib/files.functions";
+import { changeDocument } from "@/lib/document-service";
 
 export const Route = createFileRoute("/upload")({
   head: () => ({
@@ -20,23 +19,12 @@ export const Route = createFileRoute("/upload")({
   component: UploadPage,
 });
 
-function toBase64(file: File) {
-  return new Promise<string>((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(String(r.result).split(",")[1] ?? "");
-    r.onerror = rej;
-    r.readAsDataURL(file);
-  });
-}
-
 function UploadPage() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState("");
   const [action, setAction] = useState<"upload" | "reset">("upload");
   const [inputVersion, setInputVersion] = useState<Record<string, number>>({});
-  const uploadFile = useServerFn(uploadSiteFile);
-  const resetFile = useServerFn(resetSiteFile);
 
   async function upload(slot: "resume.pdf" | "certificate.pdf", file?: File) {
     if (!file) return;
@@ -45,7 +33,7 @@ function UploadPage() {
     setBusy(slot);
     setAction("upload");
     try {
-      await uploadFile({ data: { password, slot, base64: await toBase64(file) } });
+      await changeDocument("upload", password, slot, file);
       setMsg((m) => ({ ...m, [slot]: "Uploaded! It's now live on your website." }));
     } catch (e) {
       setMsg((m) => ({ ...m, [slot]: (e as Error).message || "Upload failed" }));
@@ -63,7 +51,7 @@ function UploadPage() {
     setAction("reset");
     setMsg((m) => ({ ...m, [slot]: "" }));
     try {
-      await resetFile({ data: { password, slot } });
+      await changeDocument("reset", password, slot);
       setInputVersion((v) => ({ ...v, [slot]: (v[slot] ?? 0) + 1 }));
       setMsg((m) => ({ ...m, [slot]: slot === "resume.pdf"
         ? "Resume reset. The default resume is now shown on your website."
