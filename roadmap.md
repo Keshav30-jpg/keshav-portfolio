@@ -1,6 +1,7 @@
 # Final website check
-- [ ] Make Vercel and Lovable share password-protected PDF uploads, resets, status and downloads.
-- [ ] Fix the attendance image on external deployments and verify document flows.
+- [x] Make Vercel and Lovable share password-protected PDF uploads, resets, status and downloads.
+- [x] Fix the attendance image and verify real local document flows on desktop, tablet and phone.
+- [ ] Activate and verify shared uploads on live Vercel — waiting for Lovable publication and Vercel redeployment.
 - [x] Check desktop, tablet, phone, navigation, attendance and resume downloads.
 - [x] Submit a labelled contact test; EmailJS accepted it (inbox receipt needs owner confirmation).
 - [x] Harden upload validation; all 23 regression tests pass.
