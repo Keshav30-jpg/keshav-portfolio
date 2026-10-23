@@ -8,4 +8,4 @@
 - [x] Verify real password-protected uploads and resets; original documents restored byte-for-byte.
 - [x] Review desktop, tablet and phone screenshots; no browser page errors.
 - [ ] Replace the public resume with a phone-redacted copy without the placeholder website — waiting for the owner’s corrected PDF.
-- [ ] Confirm the labelled EmailJS test reached Gmail — waiting for owner inbox confirmation.
+- [ ] Confirm the labelled EmailJS test reached Gmail — waiting for owner inbox confirmation.- [x] Build check re-run after registry rate limits cleared.
